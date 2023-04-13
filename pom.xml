@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.1</version>
+        <version>3.0.5</version>
         <relativePath/>
     </parent>
     <!-- lookup parent from repository -->
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sourcesense.poste.pec</groupId>
+    <groupId>com.sourcesense.trustedservices.fea</groupId>
     <artifactId>fea-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -30,22 +30,17 @@
     </repositories>
 
     <properties>
-<!--        <io.confluent.kafka-avro-serializer.version>7.1.1</io.confluent.kafka-avro-serializer.version>-->
-<!--        <io.netty.netty-all.version>4.1.80.Final</io.netty.netty-all.version>-->
         <java.version>17</java.version>
-<!--        <jobrunr.version>5.1.7</jobrunr.version>-->
-        <lombok.version>1.18.24</lombok.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <lombok.version>1.18.26</lombok.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-test-plugin.user.timezone>-Duser.timezone=UTC</maven-test-plugin.user.timezone>
-<!--        <okhttp.version>4.10.0</okhttp.version>-->
-        <org.apache.maven.plugins.failsafe-plugin.version>3.0.0-M7</org.apache.maven.plugins.failsafe-plugin.version>
-        <org.apache.maven.plugins.surefire-plugin.version>3.0.0-M7</org.apache.maven.plugins.surefire-plugin.version>
-        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
-        <org.mockito.version>4.6.1</org.mockito.version>
-        <org.openapitools.jackson-databind-nullable.version>0.2.2</org.openapitools.jackson-databind-nullable.version>
-        <org.springdoc.springdoc-openapi-maven-plugin.version>1.4</org.springdoc.springdoc-openapi-maven-plugin.version>
-        <org.springdoc.version>1.6.6</org.springdoc.version>
-        <plugin.jacoco.version>0.8.7</plugin.jacoco.version>
+        <org.apache.maven.plugins.failsafe-plugin.version>3.0.0</org.apache.maven.plugins.failsafe-plugin.version>
+        <org.apache.maven.plugins.surefire-plugin.version>3.0.0</org.apache.maven.plugins.surefire-plugin.version>
+        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+        <org.mockito.version>5.3.0</org.mockito.version>
+        <org.openapitools.jackson-databind-nullable.version>0.2.6</org.openapitools.jackson-databind-nullable.version>
+        <org.springdoc.version>1.7.0</org.springdoc.version>
+        <plugin.jacoco.version>0.8.9</plugin.jacoco.version>
         <plugin.sonar.version>3.9.1.2184</plugin.sonar.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.coverage.exclusions>src/test/java/**</sonar.coverage.exclusions>
@@ -55,17 +50,15 @@
         <sonar.sources>${project.basedir}/src/main/java</sonar.sources>
         <sonar.sources>src/main</sonar.sources>
         <sonar.tests>src/test</sonar.tests>
-        <spring-boot-maven-plugin.version>2.7.1</spring-boot-maven-plugin.version>
-        <spring-boot.version>2.7.1</spring-boot.version>
+        <spring-boot-maven-plugin.version>3.0.5</spring-boot-maven-plugin.version>
+        <spring-boot.version>3.0.5</spring-boot.version>
+        <openapi-generator-maven-plugin.version>6.5.0</openapi-generator-maven-plugin.version>
+        <io-swagger-annotations.version>2.2.8</io-swagger-annotations.version>
+        <javax-validation-api.version>2.0.1.Final</javax-validation-api.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-<!--            <dependency>-->
-<!--                <groupId>io.confluent</groupId>-->
-<!--                <artifactId>kafka-avro-serializer</artifactId>-->
-<!--                <version>${io.confluent.kafka-avro-serializer.version}</version>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
@@ -76,16 +69,6 @@
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${org.mapstruct.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>com.squareup.okhttp3</groupId>-->
-<!--                <artifactId>okhttp</artifactId>-->
-<!--                <version>${okhttp.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.jobrunr</groupId>-->
-<!--                <artifactId>jobrunr-spring-boot-starter</artifactId>-->
-<!--                <version>${jobrunr.version}</version>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
@@ -100,6 +83,16 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>${org.springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${io-swagger-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax-validation-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.openapitools</groupId>
@@ -118,12 +111,6 @@
                 <artifactId>mockito-core</artifactId>
                 <version>${org.mockito.version}</version>
             </dependency>
-            <!-- Mock rest server -->
-<!--            <dependency>-->
-<!--                <groupId>com.squareup.okhttp3</groupId>-->
-<!--                <artifactId>mockwebserver</artifactId>-->
-<!--                <version>${okhttp.version}</version>-->
-<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -240,15 +227,21 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.springdoc</groupId>
-                    <artifactId>springdoc-openapi-maven-plugin</artifactId>
-                    <version>${org.springdoc.springdoc-openapi-maven-plugin.version}</version>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator-maven-plugin.version}</version>
                     <executions>
                         <execution>
-                            <phase>integration-test</phase>
                             <goals>
                                 <goal>generate</goal>
                             </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+                                <generatorName>java</generatorName>
+                                <configOptions>
+                                    <sourceFolder>src/gen/java/main</sourceFolder>
+                                </configOptions>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
